@@ -27,9 +27,9 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 ######################################################################
-# Script version is YYmmdd-HHMM in UTC, date +%y%m%d-%H%M%S
+# Script version is yymmdd-HHMMSS in UTC, date +%y%m%d-%H%M%S
 ######################################################################
-SCRIPTVERSION=141210-011228
+SCRIPTVERSION=141215-081138
 
 _getinfo() {
   if [ "x" != "x$1" ]; then
@@ -40,7 +40,7 @@ _getinfo() {
 
 for i in `sysctl -n kern.disks` ; do
   DISK=$i
-  SIZE=$( gpart show $i | head -1 | awk '{print $NF}' )
+  SIZE=$( diskinfo -v $i | grep mediasize | grep bytes | awk '{print $NF}' )
   SERIAL=$( _getinfo $i | grep -i 'serial number' | awk '{print $NF}' )
   WWN=$( _getinfo $i | grep -i 'WWN' | awk '{print $NF}' )
   echo "${DISK} ${SIZE} ${SERIAL} ${WWN}"
