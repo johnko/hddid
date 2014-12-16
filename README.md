@@ -1,4 +1,4 @@
 hddid
 =====
 
-Hard Drive ID's using diskinfo, camcontrol, glabel show
+Hard Drive ID's using diskinfo, camcontrol
